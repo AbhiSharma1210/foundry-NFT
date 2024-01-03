@@ -3,5 +3,7 @@ src = "src"
 out = "out"
 libs = ["lib"]
 remappings = ['@OpenZeppelin/contracts=lib/openzeppelin-contracts/contracts']
+ffi = true
+fs_permissions = [{ access = "read", path = "./broadcast" }]
 
 # See more config options https://github.com/foundry-rs/foundry/tree/master/config
