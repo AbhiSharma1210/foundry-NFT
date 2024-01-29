@@ -42,5 +42,8 @@ endif
 deploy:
 	@forge script script/DeployBasicNft.s.sol:DeployBasicNft $(NETWORK_ARGS)
 
+deployColorNft:
+	@forge script script/DeployColorNft.s.sol:DeployColorNft $(NETWORK_ARGS)
+
 mint:
 	@forge script script/Interactions.s.sol:MintBasicNft ${NETWORK_ARGS}
