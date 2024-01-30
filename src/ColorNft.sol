@@ -6,6 +6,9 @@ import {ERC721} from "@OpenZeppelin/contracts/token/ERC721/ERC721.sol";
 import {Base64} from "@OpenZeppelin/contracts/utils/Base64.sol";
 
 contract ColorNft is ERC721 {
+    //errors
+    error ColorNft__CantFlipColorIfNotOwner();
+
     uint256 private s_tokenCounter;
     string private s_blackSvgImageUri;
     string private s_purpleSvgImageUri;
@@ -30,6 +33,18 @@ contract ColorNft is ERC721 {
         _safeMint(msg.sender, s_tokenCounter);
         s_tokenIdToColor[s_tokenCounter] = Color.BLACK;
         s_tokenCounter++;
+    }
+
+    function flipColor(uint256 tokenId) public {
+        //1 - Only the NFT owner can change the color
+        address addressFrom = _ownerOf(tokenId);
+        _checkAuthorized(addressFrom, msg.sender, tokenId);
+
+        if (s_tokenIdToColor[tokenId] == Color.BLACK) {
+            s_tokenIdToColor[tokenId] = Color.PURPLE;
+        } else {
+            s_tokenIdToColor[tokenId] = Color.BLACK;
+        }
     }
 
     function _baseURI() internal pure override returns (string memory) {

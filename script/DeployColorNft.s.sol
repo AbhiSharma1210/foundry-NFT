@@ -4,6 +4,7 @@ pragma solidity ^0.8.18;
 
 import {Script} from "forge-std/Script.sol";
 import {ColorNft} from "../src/ColorNft.sol";
+import {Base64} from "@OpenZeppelin/contracts/utils/Base64.sol";
 
 contract DeployColorNft is Script {
     uint256 public DEFAULT_ANVIL_PRIVATE_KEY =
@@ -19,5 +20,15 @@ contract DeployColorNft is Script {
         ColorNft colorNft = new ColorNft(BLACK_SVG_URI, PURPLE_SVG_URI);
         vm.stopBroadcast();
         return colorNft;
+    }
+
+    function svgToImageURI(
+        string memory svg
+    ) public pure returns (string memory) {
+        string memory baseURL = "data:image/svg+xml;base64,";
+        string memory svgBase64Encoded = Base64.encode(
+            bytes(string(abi.encodePacked(svg)))
+        );
+        return string.concat(baseURL, svgBase64Encoded);
     }
 }
