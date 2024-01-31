@@ -69,9 +69,9 @@ contract ColorNft is ERC721 {
                     Base64.encode(
                         bytes(
                             abi.encodePacked(
-                                '{"name":"}',
-                                name(),
-                                '", "description": "An NFT that changes Ethereum logo color.", "attributes": [{"trait_type": "Logo size", "value": "100"}], "image": "',
+                                '{"name":"Ethereum Logo"',
+                                ', "description": "An NFT that changes Ethereum logo color. 100% on chain.", ',
+                                '"attributes": [{"trait_type": "Logo size", "value": "100"}], "image": "',
                                 imageURI,
                                 '"}'
                             )

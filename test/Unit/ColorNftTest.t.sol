@@ -3,7 +3,7 @@
 pragma solidity ^0.8.18;
 
 import {Test, console} from "forge-std/Test.sol";
-import {ColorNft} from "../src/ColorNft.sol";
+import {ColorNft} from "../../src/ColorNft.sol";
 
 contract ColorNftTest is Test {
     ColorNft colorNft;
@@ -24,6 +24,6 @@ contract ColorNftTest is Test {
         //So we use vm.prank(USER)
         vm.prank(USER);
         colorNft.mintNft();
-        console.log(colorNft.tokenURI(0));
+        console.log("Black Logo:", colorNft.tokenURI(0));
     }
 }
