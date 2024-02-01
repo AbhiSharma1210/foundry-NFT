@@ -4,6 +4,7 @@ pragma solidity ^0.8.18;
 
 import {Test, console} from "forge-std/Test.sol";
 import {ColorNft} from "../../src/ColorNft.sol";
+import {ERC721} from "@OpenZeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract ColorNftTest is Test {
     ColorNft colorNft;
@@ -13,6 +14,7 @@ contract ColorNftTest is Test {
         "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGhlaWdodD0iODAwIiB3aWR0aD0iMTIwMCIgdmlld0JveD0iLTE2MS45NyAtNDM5LjY1IDE0MDMuNzQgMjYzNy45Ij4KICAgIDxwYXRoIGZpbGw9IiM4QTkyQjIiIGQ9Ik01MzkuNyA2NTAuM1YwTDAgODk1LjZ6IiAvPgogICAgPHBhdGggZmlsbD0iIzYyNjg4RiIgZD0iTTUzOS43IDEyMTQuN1Y2NTAuM0wwIDg5NS42em0wLTU2NC40bDUzOS44IDI0NS4zTDUzOS43IDB6IiAvPgogICAgPHBhdGggZmlsbD0iIzQ1NEE3NSIgZD0iTTUzOS43IDY1MC4zdjU2NC40bDUzOS44LTMxOS4xeiIgLz4KICAgIDxwYXRoIGZpbGw9IiM4QTkyQjIiIGQ9Ik01MzkuNyAxMzE2LjlMMCA5OThsNTM5LjcgNzYwLjZ6IiAvPgogICAgPHBhdGggZmlsbD0iIzYyNjg4RiIgZD0iTTEwNzkuOCA5OThsLTU0MC4xIDMxOC45djQ0MS43eiIgLz4KPC9zdmc+";
 
     address USER = makeAddr("user");
+    address SECOND_USER = makeAddr("secondUser");
 
     function setUp() public {
         colorNft = new ColorNft(BLACK_SVG_URI, PURPLE_SVG_URI);

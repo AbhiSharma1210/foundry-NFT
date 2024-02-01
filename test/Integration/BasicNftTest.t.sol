@@ -9,13 +9,27 @@ import {BasicNft} from "../../src/BasicNft.sol";
 contract BasicNftTest is Test {
     DeployBasicNft public deployer;
     BasicNft public basicNft;
+
     address public USER = makeAddr("user");
     string public constant SHIBA =
         "ipfs://bafybeig2alno34qtpwhvgsy3zp5khirprpcxncf4udrjdnl3lf4esbaxtm/";
+    string constant NFT_NAME = "Doggie";
+    string constant NFT_SYMBOL = "DOG";
 
     function setUp() public {
         deployer = new DeployBasicNft();
         basicNft = deployer.run();
+    }
+
+    function testInitialized_Correctly() public {
+        assertEq(
+            keccak256(abi.encodePacked(basicNft.name())),
+            keccak256(abi.encodePacked((NFT_NAME)))
+        );
+        assertEq(
+            keccak256(abi.encodePacked(basicNft.symbol())),
+            keccak256(abi.encodePacked((NFT_SYMBOL)))
+        );
     }
 
     function testName_is_correct() public view {

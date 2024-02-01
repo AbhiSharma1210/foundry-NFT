@@ -80,4 +80,9 @@ contract ColorNft is ERC721 {
                 )
             );
     }
+
+    // getter
+    function getColor(uint256 tokenId) external view returns (Color) {
+        return s_tokenIdToColor[tokenId];
+    }
 }
