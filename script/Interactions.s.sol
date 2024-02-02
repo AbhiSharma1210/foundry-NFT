@@ -9,7 +9,7 @@ import {ColorNft} from "../src/ColorNft.sol";
 
 contract MintBasicNft is Script {
     string public constant SHIBA_URI =
-        "ipfs://bafybeig2alno34qtpwhvgsy3zp5khirprpcxncf4udrjdnl3lf4esbaxtm/";
+        "ipfs://bafybeig2alno34qtpwhvgsy3zp5khirprpcxncf4udrjdnl3lf4esbaxtm";
 
     function run() external {
         address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(

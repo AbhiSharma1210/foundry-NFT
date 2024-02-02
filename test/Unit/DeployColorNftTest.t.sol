@@ -3,7 +3,7 @@
 pragma solidity ^0.8.18;
 
 import {Test, console} from "forge-std/Test.sol";
-// import {ColorNft} from "../src/ColorNft.sol";
+import {ColorNft} from "../../src/ColorNft.sol";
 import {DeployColorNft} from "../../script/DeployColorNft.s.sol";
 
 contract DeployColorNftTest is Test {
@@ -14,13 +14,17 @@ contract DeployColorNftTest is Test {
     string public svg = vm.readFile("./images/LogoBlack.svg");
 
     DeployColorNft public deployer;
+    ColorNft colorNft;
 
     // ColorNft public colorNft;
 
     function setUp() public {
         deployer = new DeployColorNft();
-        // colorNft = deployer.run();
-        // string memory expectedImageURI = deployer.svgToImageURI(deployer.BLACK_SVG_URI());
+    }
+
+    function testRun() public {
+        colorNft = deployer.run();
+        assertTrue(address(colorNft) != address(0x0), "DeployColorNft Failed!");
     }
 
     function testSvgToImageURI() public {
