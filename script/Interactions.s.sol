@@ -29,7 +29,7 @@ contract MintBasicNft is Script {
     }
 
     function mintNftOnContract(address contractAddress) public {
-        vm.startBroadcast();
+        vm.startBroadcast(deployerKey);
         BasicNft(contractAddress).mintNft(SHIBA_URI);
         vm.stopBroadcast();
     }
