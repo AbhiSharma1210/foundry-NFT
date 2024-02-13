@@ -15,16 +15,19 @@ contract MintBasicNft is Script {
         0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a;
     uint256 public deployerKey;
 
+    address latestContractAddress = 0x663F3ad617193148711d28f5334eE4Ed07016602;
+
     function run() external {
         if (block.chainid == 31337) {
             deployerKey = DEFAULT_ANVIL_PRIVATE_KEY;
         } else {
             deployerKey = vm.envUint("PRIVATE_KEY");
         }
-        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-            "BasicNft",
-            block.chainid
-        );
+        // address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
+        //     "BasicNft",
+        //     block.chainid
+        // );
+        address mostRecentlyDeployed = latestContractAddress;
         mintNftOnContract(mostRecentlyDeployed);
     }
 
