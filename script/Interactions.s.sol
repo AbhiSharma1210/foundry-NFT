@@ -15,7 +15,7 @@ contract MintBasicNft is Script {
         0x5de4111afa1a4b94908f83103eb1f1706367c2e68ca870fc3fb9a804cdab365a;
     uint256 public deployerKey;
 
-    address latestContractAddress = 0x663F3ad617193148711d28f5334eE4Ed07016602;
+    address latestContractAddress = 0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512;
 
     function run() external {
         if (block.chainid == 31337) {
@@ -23,16 +23,16 @@ contract MintBasicNft is Script {
         } else {
             deployerKey = vm.envUint("PRIVATE_KEY");
         }
-        // address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
-        //     "BasicNft",
-        //     block.chainid
-        // );
-        address mostRecentlyDeployed = latestContractAddress;
+        address mostRecentlyDeployed = DevOpsTools.get_most_recent_deployment(
+            "BasicNft",
+            block.chainid
+        );
+        // address mostRecentlyDeployed = latestContractAddress;
         mintNftOnContract(mostRecentlyDeployed);
     }
 
     function mintNftOnContract(address contractAddress) public {
-        vm.startBroadcast(deployerKey);
+        vm.startBroadcast();
         BasicNft(contractAddress).mintNft(SHIBA_URI);
         vm.stopBroadcast();
     }
